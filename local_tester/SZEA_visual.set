@@ -1,0 +1,13 @@
+; Default quality gate, tester orders, and three chart captures for the August 17 example
+InpUseImbalance=true||false||0||true||N
+InpUseFVG=true||false||0||true||N
+InpUseBOS=false||false||0||true||N
+InpUseSweep=false||false||0||true||N
+InpMinZoneScore=2||2||1||4||N
+InpPlaceOrders=true||false||0||true||N
+InpChartView=0||0||0||1||N
+InpShowHistory=false||false||0||true||N
+InpMaxDrawnZones=3||3||1||20||N
+InpVisualCaptureTime1=1786943760||0||0||0||N
+InpVisualCaptureTime2=1786967760||0||0||0||N
+InpVisualCaptureTime3=1786975080||0||0||0||N

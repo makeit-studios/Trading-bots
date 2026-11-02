@@ -1,0 +1,5 @@
+; M15 confirmed Trender arrows, with no H4/M15 direction gate.
+InpEntryMode=0||0||0||1||N
+InpArrowTF=15||15||0||0||N
+InpArrowFilter=0||0||0||1||N
+InpRunControlledReplay=false||false||0||true||N

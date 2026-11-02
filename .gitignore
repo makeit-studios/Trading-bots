@@ -1,0 +1,28 @@
+# Python / build artifacts
+.venv/
+__pycache__/
+*.pyc
+
+# Compiled MQL5 binaries and build noise (source .mq5 is tracked)
+*.ex5
+*.ex4
+*.log
+
+# Local backups / snapshots
+*.bak
+*.bak_*
+*.orig
+
+# Test outputs and archives (kept in OneDrive, not Git)
+local_tester/reports/*
+!local_tester/reports/trender_pair_value_sweep_20261030.csv
+local_tester/outputs/
+local_tester/data/*.csv
+
+# Large media
+Pics/
+
+# OS
+Thumbs.db
+desktop.ini
+.DS_Store

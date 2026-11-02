@@ -1,0 +1,5 @@
+; M15 confirmed Trender arrows only when H4 and M15 both agree.
+InpEntryMode=0||0||0||1||N
+InpArrowTF=15||15||0||0||N
+InpArrowFilter=1||1||0||1||N
+InpRunControlledReplay=false||false||0||true||N

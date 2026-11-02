@@ -1,0 +1,65 @@
+//@version=3
+
+study("Simple Trender", overlay=true)
+
+emalength = input(26)
+mvwaplength = input(13)
+ema200length = input (200)
+price = close
+
+myema = ema(low, 26)
+plot (myema)
+
+myema200 = ema (close, 200)
+plot (myema200)
+
+mvwap = ema(vwap, mvwaplength)
+plot(mvwap)
+
+//To show ema color change in long and short position, I plagiarize this portion of the code from CM_slingshot system
+
+col = price > myema ? green : price < myema ? red : red
+p1 = plot(myema, title= "myema", style=linebr, linewidth=3, color=col)
+p2 = plot (mvwap, title= "mvwap", style=linebr, linewidth=4, color=col)
+fill (p1, p2, color=silver, transp=50)
+
+//Initial entry: Long (after price closes above ema (low), place orders 1 tick above initial BAR(S) until position is filled). Do not automatically buy the next bar for initial entry, place order above high.
+//Exit long entry on first Bar that closes below ema (low). Color "purple, magenta, or whatever"
+
+cond1= price > myema
+barcolor (cond1 ? blue : na)
+
+//Initial entry: short  (after price closes below ema (low), place orders 1 tick below initial BAR(S) until position is filled). Do not automatically short on the next bar for initial entry, place order below low.
+//Exit shirt entry on first bar that closes above ema (low). Color "blue" or users choice.
+
+cond2= price < myema
+barcolor (cond2 ? purple : na)
+
+//Pullback entry (pullbackUp, pullbackDown): To ensure the best entry price on pullbacks, the aim is to buy (for long) below (or close to) the moving average VWAP, or sell (for short) above (or close to) the moving average VWAP
+//Exit on pullback entries will be the same as an initial entry long: first bar that closes purple. Or as initial entry short: first bar that closes blue.
+
+// I also plagiarize the below portion of the code from CM_slingshot system. Essentially, I wanted for pull back long and short, action to be within the "fill." 
+// price < mvwap and price > myema (pullback for long). Any bar that closes below mvwap and closes above myema, buy above the highs of those bars.
+// Anybar that closes above mvwap and close below myema, well below the low of those bars.
+
+pullback = input(true, title="show pullback arrows?")
+
+pullbackUp = price > myema and close[1] < mvwap and close > mvwap ? 1 : 0
+pullbackDown = price < myema and close[1] > mvwap and close < mvwap ? 1 : 0
+
+codiff = pullbackUp == 1 ? pullbackUp: 0
+codiff2 = pullbackDown == 1 ? pullbackDown : 0
+
+plotarrow(pullback and codiff ? codiff : na, title="Up Arrow", colorup=lime, maxheight=30, minheight=30, transp=0)
+plotarrow(pullback and codiff2*-1 ? codiff2*-1 : na, title="Down Arrow", colordown=red, maxheight=30, minheight=30, transp=0)
+
+
+
+
+
+
+
+
+
+
+ 

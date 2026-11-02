@@ -1,0 +1,5 @@
+; One short run with controlled assertions and normal arrow orders.
+InpEntryMode=0||0||0||1||N
+InpArrowTF=15||15||0||0||N
+InpArrowFilter=0||0||0||1||N
+InpRunControlledReplay=true||false||0||true||N

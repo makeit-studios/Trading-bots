@@ -1,0 +1,7 @@
+; Any two of four evidence points
+InpUseImbalance=true||false||0||true||N
+InpUseFVG=true||false||0||true||N
+InpUseBOS=true||false||0||true||N
+InpUseSweep=true||false||0||true||N
+InpMinZoneScore=2||2||1||4||N
+InpRunControlledReplay=false||false||0||true||N

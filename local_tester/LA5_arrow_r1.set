@@ -1,0 +1,8 @@
+; Live M5 first-sight arrow, 1:1 target, no alignment filter.
+InpFilter=0||0||0||1||N
+InpTradingEnabled=true||false||0||true||N
+InpRiskPct=1.0||1.0||0.1||4.0||N
+InpMaxCombinedRiskPct=4.0||4.0||0.1||10.0||N
+InpTargetR=1.0||1.0||0.1||2.0||N
+InpMagic=26102305||26102305||1||26102305||N
+InpMaxDeviationPoints=20||20||1||100||N

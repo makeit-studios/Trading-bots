@@ -1,0 +1,2 @@
+; StructureZoneEntryEA smoke test: normal order rules plus deterministic replay assertions
+InpRunControlledReplay=true||false||0||true||N

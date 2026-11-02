@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mt5-ai-local-tester"
+version = "0.1.0"
+description = "Local, replayable MT5 AI strategy test harness"
+requires-python = ">=3.12,<4"
+dependencies = ["pyeventbt==0.0.14"]
+
+[project.scripts]
+mt5-ai-test = "mt5_ai_tester.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+

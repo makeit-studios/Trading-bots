@@ -1,0 +1,7 @@
+; Lower-quality sensitivity check
+InpUseImbalance=true||false||0||true||N
+InpUseFVG=false||false||0||true||N
+InpUseBOS=false||false||0||true||N
+InpUseSweep=false||false||0||true||N
+InpMinZoneScore=1||1||1||4||N
+InpRunControlledReplay=false||false||0||true||N

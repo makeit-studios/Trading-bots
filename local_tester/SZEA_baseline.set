@@ -1,0 +1,7 @@
+; Imbalance plus FVG, both required (default)
+InpUseImbalance=true||false||0||true||N
+InpUseFVG=true||false||0||true||N
+InpUseBOS=false||false||0||true||N
+InpUseSweep=false||false||0||true||N
+InpMinZoneScore=2||2||1||4||N
+InpRunControlledReplay=false||false||0||true||N

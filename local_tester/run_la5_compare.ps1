@@ -1,0 +1,87 @@
+param(
+    [switch]$SmokeOnly,
+    [switch]$ShortWindows,
+    [ValidateSet(0, 4)]
+    [int]$TickModel = 4,
+    [string]$RunId,
+    [string]$OnlyTag
+)
+
+$ErrorActionPreference = 'Stop'
+$project = Split-Path -Parent $PSScriptRoot
+$data = 'C:\Users\Karikari\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075'
+$terminal = 'C:\Program Files\MetaTrader 5\terminal64.exe'
+$expertDir = Join-Path $data 'MQL5\Experts'
+$setDir = Join-Path $data 'MQL5\Profiles\Tester'
+$runId = if ($RunId) { $RunId } else { Get-Date -Format 'yyyyMMdd_HHmmss' }
+
+if (Get-Process terminal64 -ErrorAction SilentlyContinue) {
+    throw 'MT5 is already running. Close the existing session before starting this comparison.'
+}
+Copy-Item -LiteralPath (Join-Path $project 'Experts\LiveArrowM5EA.mq5') -Destination (Join-Path $expertDir 'LiveArrowM5EA.mq5') -Force
+Copy-Item -LiteralPath (Join-Path $project 'Experts\LiveArrowM5EA.ex5') -Destination (Join-Path $expertDir 'LiveArrowM5EA.ex5') -Force
+foreach ($name in @('LA5_arrow_r1', 'LA5_arrow_r2', 'LA5_aligned_r1', 'LA5_aligned_r2')) {
+    Copy-Item -LiteralPath (Join-Path $PSScriptRoot "$name.set") -Destination (Join-Path $setDir "$name.set") -Force
+}
+
+$runs = @(@{ Tag = 'smoke_arrow_r1'; Set = 'LA5_arrow_r1'; From = '2026.10.18'; To = '2026.10.20' })
+if (-not $SmokeOnly) {
+    $windows = if ($ShortWindows) {
+        @(
+            @{ Tag = 'development'; From = '2026.07.01'; To = '2026.07.15' },
+            @{ Tag = 'holdout'; From = '2026.10.01'; To = '2026.10.20' }
+        )
+    } else {
+        @(
+            @{ Tag = 'development'; From = '2026.05.01'; To = '2026.07.31' },
+            @{ Tag = 'holdout'; From = '2026.08.01'; To = '2026.10.20' }
+        )
+    }
+    foreach ($window in $windows) {
+        foreach ($variant in @('arrow_r1', 'arrow_r2', 'aligned_r1', 'aligned_r2')) {
+            $runs += @{ Tag = "$($window.Tag)_$variant"; Set = "LA5_$variant"; From = $window.From; To = $window.To }
+        }
+    }
+}
+if ($OnlyTag) {
+    $runs = @($runs | Where-Object { $_.Tag -eq $OnlyTag })
+    if ($runs.Count -ne 1) { throw "Unknown run tag: $OnlyTag" }
+}
+
+$archive = Join-Path $PSScriptRoot "reports\la5_compare_$runId"
+New-Item -ItemType Directory -Path $archive -Force | Out-Null
+foreach ($run in $runs) {
+    if (Get-Process terminal64 -ErrorAction SilentlyContinue) {
+        throw "MT5 became occupied before $($run.Tag)."
+    }
+    $name = "LA5_$($run.Tag)_$runId"
+    $ini = Join-Path $archive "$name.ini"
+    @(
+        '[Tester]',
+        'Expert=LiveArrowM5EA.ex5',
+        "ExpertParameters=$($run.Set).set",
+        'Symbol=XAUUSDm',
+        'Period=M5',
+        "Model=$TickModel",
+        "FromDate=$($run.From)",
+        "ToDate=$($run.To)",
+        'Deposit=10000',
+        'Currency=USD',
+        'Leverage=1:2000',
+        'Visual=0',
+        'ShutdownTerminal=1',
+        'ReplaceReport=1',
+        'Optimization=0',
+        "Report=$name"
+    ) | Set-Content -LiteralPath $ini -Encoding ascii
+    $started = Get-Date
+    Write-Output "Starting $($run.Tag): $($run.From) through $($run.To), model $TickModel"
+    $process = Start-Process -FilePath $terminal -ArgumentList ('/config:"' + $ini + '"') -WindowStyle Hidden -PassThru -Wait
+    $report = Join-Path $data "$name.htm"
+    if (-not (Test-Path -LiteralPath $report) -or (Get-Item -LiteralPath $report).LastWriteTime -lt $started) {
+        throw "No fresh report for $($run.Tag); terminal exit $($process.ExitCode)."
+    }
+    Copy-Item -LiteralPath $report -Destination (Join-Path $archive "$name.htm") -Force
+    Write-Output "Completed $($run.Tag): $report"
+}
+Write-Output "Reports: $archive"
