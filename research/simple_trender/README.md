@@ -1,11 +1,12 @@
 # Simple Trender research handoff
 
-Start with `../../Notes/SimpleTrender_TRUTH.md`, which identifies the current strategy, verified results, unresolved risks and active annual test. This directory contains isolated research files; it is not the canonical EA and none of it is a live deployment.
+Start with `../../Notes/SimpleTrender_TRUTH.md`, which identifies the current strategy, verified results and unresolved risks. The 2026 annual test is complete; the later 2024–2025 random-month approximation is documented below. This directory contains isolated research files; it is not the canonical EA and none of it is a live deployment.
 
 ## Contents
 
 - `work/tiered/Experts/TrenderRunnerResearchEA.mq5`: tested three-leg research implementation (3% and 4.5% nominal inputs), plus its runner, ledger analyzer, audit and report scripts.
 - `work/yearly/`: annual-test variant, differing in its allowed risk input up to 5%, and its audit/report scripts. Both the 3% and 5% annual runs are complete and audited.
+- `work/random_months/`: locked 2020–2025 month draw, isolated entry-month filter, shell runner and audits for the user-approved 2024–2025 approximation. The four-month continuous run uses MT5 model 2, reports 98% history quality, and is not a real-tick or six-year validation. Its reconciled archive is under `work/random_months/local_tester/reports/trender_quick_r6a_20261104/`; results are in `outputs/SimpleTrender_Random_Months_2024_2025.md`.
 - `work/runner_exit/`, `work/m15_independent/`, `work/independent_fixed/`: earlier independent-fixed and stop-management research source and tester/analyzer scripts.
 - `work/*/local_tester/reports/`: both audited 2026 annual runs and four complete July–October M15 comparisons, including the source-input `.set`, HTML tester report, original event ledger, reconciled trade ledger and summary. The 3% two-leg baseline is under `runner_exit`; the 4.5% two-leg and both tiered runs are under `tiered`.
 - `outputs/`: concise research reports, data and comparisons for the current tiered study, runner management, timeframe tests and prior price-path investigation.

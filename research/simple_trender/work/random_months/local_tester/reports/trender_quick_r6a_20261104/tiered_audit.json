@@ -1,0 +1,18 @@
+{
+  "tiered": true,
+  "risk": "3",
+  "model": "open prices only",
+  "quality": "98%",
+  "selected_months": [
+    "202403",
+    "202408",
+    "202508",
+    "202511"
+  ],
+  "net": "-534.84",
+  "drawdown": "64.54% (746.71)",
+  "trades": 478,
+  "set_opens": 141,
+  "rollbacks": 33,
+  "errors": 6
+}
