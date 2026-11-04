@@ -1,0 +1,19 @@
+source_sha256=CA9E971BBD1FF8BB15A0ADF8F8D3796F6C7906AA0AB9D2282AAEC438BAE1BA62
+binary_sha256=C83BE743DD2485B9AEDBB849D29E666F21FB0C42CB2A392A8BB235AE80F88E70
+model_requested=4 (every tick based on real ticks)
+entry=closed signal-timeframe arrow; direction=closed M5 band only
+stop=latest completed M5 band; exit=2
+major_ema=210
+history_bars=1800 (screen-only cap; full tests use default)
+deposit=1000 USD
+nominal_symbol_risk_pct=4.5 (EA applies its existing 90% sizing buffer)
+tiered=False
+fixed_target_r=1
+independent_fixed=true (M15 exits affect runner only)
+signal_trigger=ema_reclaim
+staged_entry=0 (25% probe; M1 close >= +0.5R within 10 minutes; add uses remaining stop-risk budget)
+leverage=1:2000
+period=2026.07.01 to 2026.10.26
+symbols=USTECm
+signal_timeframes=M15
+profiles=base

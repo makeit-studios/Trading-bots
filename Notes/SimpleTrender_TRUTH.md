@@ -1,6 +1,56 @@
-﻿# Simple Trender — handoff truth
+# Simple Trender — current research handoff
 
-Updated **2026-10-31** (Atlantic/Reykjavik). Read this first when continuing in another chat. This file describes the Simple Trender research only; `Notes/TRUTH.md` covers other EAs and contains older Simple Trender history. The working project root is `C:\Users\Karikari\OneDrive\Documents\Projects\EAs`. It is **not a Git repository**. The adjacent `New\Pine Zone EA` folder is a different workspace.
+Updated **2026-11-04** (Atlantic/Reykjavik). The project root is now the Git repository containing this file; the earlier statement that it is not a repository is obsolete. Read this current section before the historical notes below. The active strategy research and validated evidence are versioned in `research/simple_trender/README.md`. The canonical project EA is separate from the research versions and has not been updated to the latest tiered rules.
+
+## Current objective and preferences
+
+- Research USTECm with the M15 signal and three legs: independent 1R fixed, independent 2R fixed, and an uncapped runner managed by the existing M15 band/major-EMA exit. Fixed legs do not close on the M15 runner exit. The user wants profits captured while leaving runners room for retracements.
+- User prefers shell-driven, hidden MT5 tests, no GUI automation or Computer Use, and a single continuous account per configuration. Do not deploy to live trading. Do not modify the canonical EA without an explicit future decision.
+- User originally sought 3–5 unique entries per calendar day across the selected portfolio and at least 55% 1R fixed win rate. M15 yields fewer entries and the user accepts that tradeoff if its consistency is better. Do not describe runner win rate as the sole measure of success.
+- All historical July–October 2026 results below are development data: entry settings and management choices were inspected and selected on them. August/September are no longer untouched holdouts. No reliable edge or live risk level has been established.
+
+## Frozen three-leg research behavior
+
+- USTECm, EMA(low)30 reclaim and smoothed VWAP17 on the completed **M15 signal**; completed M5 direction and slope3; original stop frozen one broker tick beyond the outer completed M5 band. M15 band adverse close or EMA210 cross closes the runner; no runner break-even or ATR trail in the tiered candidate. M15 is not an entry-direction veto. Tester chart remains M1 to process ticks.
+- New signal opens risk-sized separate legs 1 (runner), 2 (1R), 4 (2R). The 1R slot may reopen on later compatible signals while the same-direction runner survives. A 2R tier opens only with a new runner. When runner is absent, an old 1R or 2R leg blocks a new runner set. New three-leg sets attempt rollback if opening fails or post-fill modeled stop risk exceeds cap; failed closes retry. These are tests, not guaranteed atomic broker execution.
+- The risk input is nominal combined stop risk based on **current equity** with the existing 90% reserve. Thus 3% and 4.5% inputs target at most 2.7% and 4.05% respectively before volume rounding and execution; user additionally requested a **5% input**, corresponding to 4.5% after reserve. Positions use broker minimum/step and can be skipped. The EA cap sums **entry-to-stop** risk for its matching symbol/magic positions, not current-equity-to-stop or account-wide risk. Gaps, slippage, rejected orders, and delayed exits can exceed intended losses.
+- Exact research implementation tested at 3%/4.5% is `research/simple_trender/work/tiered/Experts/TrenderRunnerResearchEA.mq5`. The isolated `work/yearly/Experts/TrenderRunnerResearchEA.mq5` raises the research input ceiling to 5%; it is not an independently validated live EA. Inspect all tester scripts and local paths before use.
+
+## Verified continuous real-tick comparison
+
+USTECm MT5 model 4, `History Quality=100% real ticks`; July 1 through October 25 inclusive; each row starts its own $1,000 account, 1:2000 tester leverage. Trade/event ledgers reconcile to the MT5 reports. No monthly balance resets.
+
+| M15 system | Nominal risk | Accepted entries | Net profit | Final balance | Profit factor | Max relative equity DD |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Two legs: 1R + runner | 3% | 171 | +$937.90 | $1,937.90 | 1.33 | 23.68% |
+| Three legs: 1R + 2R + runner | 3% | 153 | +$1,172.63 | $2,172.63 | 1.46 | 21.58% |
+| Two legs: 1R + runner | 4.5% | 171 | +$1,466.41 | $2,466.41 | 1.31 | 33.67% |
+| Three legs: 1R + 2R + runner | 4.5% | 153 | +$2,193.79 | $3,193.79 | 1.47 | 31.31% |
+
+At 3%, three-leg 1R had 95/150 TP/(TP+SL), net +$512.78; 2R had 54/121, +$472.37; runner net +$187.48. Its 12/7/4 runners reaching at least 5R/10R/15R are **overlapping maximum favorable excursion counts**, not realized return. Runner mean realized net R was +0.153R per non-end-of-test runner, measured against that leg's original risk. The 4.5% drawdown was material even though absolute profit was higher. 7 and 8 three-leg rollback starts occurred at 3%/4.5%; 2 and 3 respectively involved already-opened positions. There were 6 logged close errors in each configuration; account results include rollback fills/costs. Full results and monthly breakdown: `research/simple_trender/outputs/SimpleTrender_Tiered_Study.md`; raw verified ledgers are in the research directory described by its README.
+
+Earlier continuous two-leg runner management tests: M15 baseline +$937.90 / DD23.68%, break-even at +2R +$679.54 / DD22.01%, and break-even plus M15 3×ATR trail after +5R +$736.70 / DD21.07%. M5 baseline +$1,234.37 / DD52.45%, break-even +$1,444.27 / DD50.58%, break-even+ATR +$375.77 / DD54.84%. Market-closed stop-modification rejections were frequent in the trailing runs; counts are attempts, not distinct trades. See `research/simple_trender/outputs/SimpleTrender_Continuous_Runner_Study.md`. Earlier M1/M3/M5/M15 independent fixed-leg comparisons and the user-provided charts informed development, not independent validation.
+
+## Completed year-to-date real-tick tests — decisive current context
+
+The user requested continuous M15 three-leg tests from 2026-01-01 to the latest completed day at 3% and 5% nominal risk. MT5 excludes the current day; both runs cover **January 1–November 2, 2026 inclusive** (`ToDate=2026.11.03`). Each starts from $1,000. Both MT5 reports state **100% real ticks**, have 132,350,631 ticks and 297,379 bars, cover all eleven monthly snapshots, and their trade/event ledgers and tiered audits reconcile. The first January snapshot occurred January 1 at 23:00:02 broker time.
+
+| Nominal risk | Accepted entries | Net | Final balance | PF | Max relative equity DD | 1R net | 2R net | Runner net |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 3% | 383 | **−$33.05** | $966.95 | 0.99 | **63.95%** | +$6.63 | +$54.82 | −$94.50 |
+| 5% | 384 | **−$310.08** | $689.92 | 0.95 | **84.26%** | −$103.65 | −$129.68 | −$76.75 |
+
+At 3%, 1R had 193/377 TP/(TP+SL); 2R had 113/317. At 5%, 1R had 193/374 and 2R 109/312. Runner excursion counts at 5R/10R/15R were 33/17/12 in each run; thresholds overlap and are peaks, not captured returns. These year-to-date outcomes materially weaken the apparently promising four-month result and show that higher sizing worsened the outcome in this historical sample. They do not imply one can fix the system by increasing risk.
+
+The 3% annual test had 75 rollback starts (6 after positions had opened), 70 minimum-volume skips and 10 close errors; 5% had 72 (10 after positions had opened), 59 minimum-volume skips and 10 close errors. Outcome includes rollback costs; 3% annual had 1,029 closed legs. Detailed months and attribution: `research/simple_trender/outputs/SimpleTrender_2026_YTD_Study.md`. Reconciled MT5 reports, inputs and event ledgers are in `research/simple_trender/work/yearly/local_tester/reports/trender_quick_y26t3_015009676/` and `.../trender_quick_y26t5_020329258/`.
+
+The earlier four-month favorable study and January–November year-to-date study are not independent: July–October informed entries and exits. January–June preceded the development period and is not chronological forward validation. The next agent should first diagnose the 2026 loss periods, execution failures and risk from the existing ledgers. Freeze any subsequent rule before testing a genuinely untouched period; do not assert an edge from this sample.
+
+The isolated hidden portable MT5 instance used for these shell tests is under the original Codex workspace at `C:\Users\Karikari\Documents\Codex\2026-11-01\simple-trender-shell-tests\work\runner_exit\portable_terminal`, not in Git. It has no user charts and automated trading disabled. Check current processes before starting another run; do not run or deploy the EA in a live terminal. The batch's reports were generated in the Codex workspace and copied to this repository after audit.
+
+## Historical notes — superseded where conflicting
+
+The following older entries are retained for provenance. Their references to August/September being untouched, the next task, current source defaults, repository status and preferred test mode describe their historical date, not current state. The current section above takes precedence.
 
 ## The user's objective and fixed preferences
 

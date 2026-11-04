@@ -1,0 +1,7 @@
+timeframe,variant,entries,total_net,profit_factor,equity_drawdown,fixed_count,fixed_tp,fixed_resolved,fixed_net,fixed_mean_net_r,runner_count,runner_net,runner_measured,runner_mean_net_r,runner_mean_mfe_r,runner_ge5,runner_ge10,runner_ge15,runner_eot_unmeasured,be_triggers,trail_triggers,stop_changes,stop_rejections,market_closed_rejections,stop_deferred,close_errors,min_volume_skips
+M5,baseline,316,1234.37,1.25,52.45% (837.98),316,175,316,618.8,0.098,211,615.57,211,0.2616,2.7227,27,17,6,0,0,0,0,0,0,0,17,3
+M5,break-even,319,1444.27,1.29,50.58% (844.08),319,177,319,675.28,0.1002,218,768.99,218,0.2726,2.5123,22,14,6,0,67,0,67,0,0,0,17,3
+M5,break-even + ATR,323,375.77,1.09,54.84% (829.74),323,177,323,378.74,0.0864,228,-2.97,228,0.0373,2.0794,23,8,3,0,69,23,228,2620,2620,13,17,10
+M15,baseline,171,937.9,1.33,23.68% (380.19),171,104,170,689.86,0.2255,137,248.04,136,0.144,2.5186,14,8,4,1,0,0,0,0,0,0,6,0
+M15,break-even,173,679.54,1.29,22.01% (314.85),173,105,172,604.95,0.2229,144,74.59,143,0.0583,2.1095,9,4,3,1,50,0,50,0,0,0,6,2
+M15,break-even + ATR,174,736.7,1.32,21.07% (276.01),174,106,173,630.56,0.2275,147,106.14,146,0.063,2.0099,9,4,2,1,51,9,126,381,381,12,6,2

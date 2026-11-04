@@ -1,0 +1,5 @@
+variant,risk_pct_nominal,entries,net_usd,final_balance_usd,profit_factor,equity_drawdown,runner_count,runner_net_usd,runner_mean_net_r,runner_resolved,runner_tp,fixed1_count,fixed1_net_usd,fixed1_mean_net_r,fixed1_resolved,fixed1_tp,fixed2_count,fixed2_net_usd,fixed2_mean_net_r,fixed2_resolved,fixed2_tp,runner_mfe_ge5,runner_mfe_ge10,runner_mfe_ge15,set_opens,rollbacks,rollbacks_with_positions,close_errors,minimum_volume_skips,order_check_skips
+two-leg,3,171,937.9,1937.9,1.33,23.68% (380.19),137,248.04,0.144,136,0,171,689.86,0.2255,170,104,0,0,0,0,0,14,8,4,0,0,0,6,0,0
+two-leg,4.5,171,1466.41,2466.41,1.31,33.67% (643.79),137,306.46,0.1441,136,0,171,1159.95,0.2255,170,104,0,0,0,0,0,14,8,4,0,0,0,6,0,0
+three-leg,3,153,1172.63,2172.63,1.46,21.58% (367.06),124,187.48,0.1529,123,0,153,512.78,0.2613,150,95,124,472.37,0.3241,121,54,12,7,4,122,7,2,6,0,0
+three-leg,4.5,153,2193.79,3193.79,1.47,31.31% (711.65),124,320.51,0.1608,123,0,153,1000.43,0.2677,149,95,124,872.85,0.3321,120,54,12,7,4,121,8,3,6,0,0

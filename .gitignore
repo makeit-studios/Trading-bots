@@ -19,6 +19,10 @@ local_tester/reports/*
 local_tester/outputs/
 local_tester/data/*.csv
 
+# Isolated Simple Trender MT5 profiles and generated connection settings
+research/simple_trender/work/**/portable_terminal/
+research/simple_trender/work/**/local_tester/reports/**/*.ini
+
 # Large media
 Pics/
 

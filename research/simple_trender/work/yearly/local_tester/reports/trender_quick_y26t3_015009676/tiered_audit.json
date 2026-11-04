@@ -1,0 +1,11 @@
+{
+  "tiered": true,
+  "risk": "3",
+  "quality": "100% real ticks",
+  "net": "-33.05",
+  "drawdown": "63.95% (895.89)",
+  "trades": 1029,
+  "set_opens": 317,
+  "rollbacks": 75,
+  "errors": 10
+}
