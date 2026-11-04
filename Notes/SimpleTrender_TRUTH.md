@@ -48,6 +48,10 @@ The earlier four-month favorable study and January–November year-to-date study
 
 The isolated hidden portable MT5 instance used for these shell tests is under the original Codex workspace at `C:\Users\Karikari\Documents\Codex\2026-11-01\simple-trender-shell-tests\work\runner_exit\portable_terminal`, not in Git. It has no user charts and automated trading disabled. Check current processes before starting another run; do not run or deploy the EA in a live terminal. The batch's reports were generated in the Codex workspace and copied to this repository after audit.
 
+## 2026 USTECm bar export
+
+- M1, M5 and M15 OHLCV bars with broker `spread_points` for January 1–November 3, 2026 are committed under `research/simple_trender/data/ustecm_2026-01-01_to_2026-11-03/`. The isolated MT5 exporter used model 2 open prices, and the tester report stated 100% bar-history quality; this is not a real-tick spread or bid/ask series. See the dataset README and manifest for date coverage, row counts, spread units and hashes.
+
 ## Random 2020–2025 month draw; 2024–2025 approximation
 
 - On 2026-11-04 the user requested two randomly selected months in each year 2020–2025, with one continuous account. The locked draw was 2020 Feb/Apr, 2021 Jul/Aug, 2022 May/Jul, 2023 Aug/Sep, 2024 Mar/Aug, and 2025 Aug/Nov. The draw was saved before outcomes were inspected at `research/simple_trender/work/random_months/selection.json`.

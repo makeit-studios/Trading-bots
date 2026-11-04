@@ -4,6 +4,7 @@ Start with `../../Notes/SimpleTrender_TRUTH.md`, which identifies the current st
 
 ## Contents
 
+- `data/ustecm_2026-01-01_to_2026-11-03/`: committed M1, M5 and M15 USTECm OHLCV bars with `spread_points`, per-file hashes and coverage notes. These are broker bars exported with MT5 model 2, not real-tick bid/ask data.
 - `work/tiered/Experts/TrenderRunnerResearchEA.mq5`: tested three-leg research implementation (3% and 4.5% nominal inputs), plus its runner, ledger analyzer, audit and report scripts.
 - `work/yearly/`: annual-test variant, differing in its allowed risk input up to 5%, and its audit/report scripts. Both the 3% and 5% annual runs are complete and audited.
 - `work/random_months/`: locked 2020–2025 month draw, isolated entry-month filter, shell runner and audits for the user-approved 2024–2025 approximation. The four-month continuous run uses MT5 model 2, reports 98% history quality, and is not a real-tick or six-year validation. Its reconciled archive is under `work/random_months/local_tester/reports/trender_quick_r6a_20261104/`; results are in `outputs/SimpleTrender_Random_Months_2024_2025.md`.

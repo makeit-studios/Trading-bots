@@ -1,0 +1,100 @@
+{
+  "symbol": "USTECm",
+  "broker_server": "Exness-MT5Trial9",
+  "requested_inclusive_dates": [
+    "2026-01-01",
+    "2026-11-03"
+  ],
+  "exporter": "Experts/TrenderBarExport.mq5",
+  "tester_model": "2 (open prices only; bars from broker history)",
+  "spread_unit": "broker points in the MqlRates spread field, not price units",
+  "raw_rows": 478060,
+  "raw_sha256": "B0AAF26BD1B49835F76A1F86BD5EBC39528894348915E73927039C2DFA38C6C5",
+  "source_sha256": "9C80B7B72CAE6F2D2695107FEEF0A2F6A2FC5CBC964C54FD325C13FCF523D319",
+  "binary_sha256": "2518F9C71E0982A96EEFF2F474975F23ACD0119CD858205E062554592A07CDA6",
+  "skipped_outside_dates": 4,
+  "skipped_m3_rows": 99614,
+  "files": {
+    "USTECm_M1_2026-01-01_to_2026-11-03.csv": {
+      "timeframe": "M1",
+      "bytes": 19670593,
+      "sha256": "312F42A174E2F7A398FCCDE7837A7730D7CD8370E37072ACE87F79E89EF6E4C1",
+      "rows": 298758,
+      "first": "2026.01.01 23:00",
+      "last": "2026.11.03 23:58",
+      "spread_min": 100,
+      "spread_max": 432,
+      "spread_zero": 0,
+      "monthly_rows": {
+        "2026.01": 28714,
+        "2026.02": 27340,
+        "2026.03": 30460,
+        "2026.04": 29880,
+        "2026.05": 28715,
+        "2026.06": 30105,
+        "2026.07": 31355,
+        "2026.08": 29080,
+        "2026.09": 30099,
+        "2026.10": 30191,
+        "2026.11": 2819
+      }
+    },
+    "USTECm_M5_2026-01-01_to_2026-11-03.csv": {
+      "timeframe": "M5",
+      "bytes": 3974287,
+      "sha256": "DDF186E4DC8C1859E7B1B6FA7186CD709DED5F3A57BD3FA996A99C4476AB1550",
+      "rows": 59753,
+      "first": "2026.01.01 23:00",
+      "last": "2026.11.03 23:50",
+      "spread_min": 100,
+      "spread_max": 360,
+      "spread_zero": 0,
+      "monthly_rows": {
+        "2026.01": 5743,
+        "2026.02": 5468,
+        "2026.03": 6092,
+        "2026.04": 5976,
+        "2026.05": 5743,
+        "2026.06": 6021,
+        "2026.07": 6272,
+        "2026.08": 5816,
+        "2026.09": 6020,
+        "2026.10": 6039,
+        "2026.11": 563
+      }
+    },
+    "USTECm_M15_2026-01-01_to_2026-11-03.csv": {
+      "timeframe": "M15",
+      "bytes": 1357119,
+      "sha256": "12DED321F032F0971106EA8D283CA8EC1981199A8A8B92700EA8533C9C0B38B9",
+      "rows": 19931,
+      "first": "2026.01.01 23:00",
+      "last": "2026.11.03 23:30",
+      "spread_min": 100,
+      "spread_max": 360,
+      "spread_zero": 0,
+      "monthly_rows": {
+        "2026.01": 1916,
+        "2026.02": 1824,
+        "2026.03": 2032,
+        "2026.04": 1993,
+        "2026.05": 1916,
+        "2026.06": 2008,
+        "2026.07": 2092,
+        "2026.08": 1940,
+        "2026.09": 2008,
+        "2026.10": 2015,
+        "2026.11": 187
+      }
+    }
+  },
+  "tester_report": {
+    "model": "2 (open prices only)",
+    "history_quality": "100%",
+    "bars": 298759,
+    "ticks_generated": 1195034,
+    "total_trades": 0,
+    "sha256": "0557A5B10466D0A8854C7ECCFE56F21EDBAA1F602521C6941FD5119384AD3268",
+    "note": "100% is the MT5 bar-history quality label for model 2, not a real-tick quality claim"
+  }
+}
